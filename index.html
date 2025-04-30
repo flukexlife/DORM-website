@@ -1,44 +1,137 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DORM</title>
-    <link rel="stylesheet" href="main.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chayen Yes OR NOT</title>
+  <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-    <header>
-        <nav>
-            <div class="logo">
-                <img src="image/logo.png" alt="Drom Logo">
-            </div>
-            <ul class="nav-links">
-                <li><a href="#">DORM</a></li>
-            </ul>
-        </nav>
-    </header>
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Smart living made simple, your all in one dorm app.</h1>
-            <p>Drom is an all-in-one dormitory management platform that provides seamless booking, smart living, and effortless management for residents,<br> powered by DORM Team</p>
-            <button  id="downloadDemo" class="cta-button" > Dowload Demo </button>      
-        </div>
-    </section>
-    <section class="picmain">
-        <div class="mid-main">
-            <img class="mid" src="image/Login white 2.png" alt="Loading Image 2">
-            <img class="mid" src="image/Loading White.png" alt="Loading Image 1">
-            <img class="mid" src="image/check 2.png" alt="Loading Image 3">
-    </div>
-    <div class="text">
-        <p class="text">Application is developing ....</p>
-    </div>
-    </section>
+<body class="bg-pink-50 min-h-screen flex items-center justify-center">
+  <div class="bg-white p-8 rounded-2xl shadow-md w-full max-w-md text-center space-y-6">
+    <h1 class="text-2xl font-bold text-pink-700">Chayen Yes OR NOT</h1>
 
-    <footer>
-        <p>&copy; 2024 Dorm. All rights reserved.</p>
-    </footer>
+    <!-- ช่องแสดงน้ำ -->
+    <div class="flex justify-between items-center">
+      <div id="waterSlot1" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(1)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+      <div id="waterSlot2" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(2)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+      <div id="waterSlot3" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(3)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+      <div id="waterSlot4" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(4)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+      <div id="waterSlot5" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(5)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+      <div id="waterSlot6" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(6)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+      <div id="waterSlot7" class="w-12 h-12 bg-blue-200 rounded-lg cursor-pointer" onclick="addWater(7)">
+        <img src="https://i.pinimg.com/736x/7c/b1/3c/7cb13c4ef2d1b61c023b75524c050e34.jpg" alt="น้ำ" class="w-full h-full object-cover rounded-lg" />
+      </div>
+    </div>
 
-    <script src="main.js"></script>
+    <p class="text-lg">จำนวนดื่มไอหมาอ้วน</p>
+    <p id="waterCount" class="text-4xl font-bold text-pink-600">0 / 7 ขวด</p>
+
+    <div>
+      <button id="randomButton" onclick="randomTea()" class="bg-red-500 text-white px-6 py-2 rounded-xl hover:bg-red-600">
+        สุ่มชาเย็น
+      </button>
+      <p id="result" class="text-xl font-bold mt-4 text-green-600"></p>
+    </div>
+
+    <div class="flex justify-between items-center">
+        <!-- ปุ่มเริ่มใหม่ ชิดซ้าย -->
+      
+        <!-- ปุ่ม mute ชิดขวา -->
+        <button onclick="toggleMusic()" class="bg-pink-100 text-white px-1 py-1 rounded-xl mt-4">
+            ปิดเสียง
+        </button>
+      </div>
+
+      <button onclick="reset()" class=" text-sm text-gray-500 underline">
+        เริ่มใหม่
+      </button>
+    <!-- ฝังเพลงจาก MP3 -->
+    <audio id="bgMusic" loop>
+      <source src="https://www.bensound.com/bensound-music/bensound-sunny.mp3" type="audio/mpeg">
+      เบราว์เซอร์ของคุณไม่รองรับเสียง
+    </audio>
+  </div>
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+Thai:wght@100..900&display=swap');
+  
+    body {
+      font-family: 'Noto Serif Thai', serif;
+    }
+  </style>
+
+  <script>
+
+    let water = 0;
+    let musicPlaying = false; // ตัวแปรเพื่อเก็บสถานะการเล่นเพลง
+
+    // ฟังก์ชันเพิ่มน้ำ
+    function addWater(slot) {
+      if (water < 7) {
+        water++;
+        document.getElementById("waterCount").innerText = `${water} / 7 ขวด`;
+        // แสดงรูปน้ำในช่องที่คลิก
+        const img = document.querySelector(`#waterSlot${slot} img`);
+        img.src = "https://marketeeronline.co/wp-content/uploads/2023/12/News-T-Tea-%E0%B8%A3%E0%B8%B9%E0%B8%9B-3.jpeg"; // ตัวอย่างรูปใหม่
+
+      }
+    }
+
+    // ฟังก์ชันสุ่มชาเย็น
+    function randomTea() {
+      let chance = 0;
+
+      // คำนวณโอกาสตามจำนวนขวดน้ำที่ดื่มไป
+      if (water >= 1 && water <= 2) {
+        chance = 0.1; 
+      } else if (water >= 3 && water <= 4) {
+        chance = 0.2; 
+      } else if (water >= 5 && water <= 6) {
+        chance = 0.25; 
+      } else if (water === 7) {
+        chance = 1; // 50% โอกาสได้ชาเย็น
+      }
+
+      const result = Math.random() < chance ? "กินชาเย็นไอหมาอ้วน🧋" : "อดกิน!ไอหมาอ้วน🧋";
+      document.getElementById("result").innerText = result;
+    }
+
+    function reset() {
+      water = 0;
+      document.getElementById("waterCount").innerText = "0 / 7 ขวด";
+      document.getElementById("result").innerText = "";
+
+      // รีเซ็ตช่องน้ำ
+      for (let i = 1; i <= 7; i++) {
+        document.getElementById(`waterSlot${i}`).style.backgroundColor = "#93C5FD"; 
+      }
+    }
+
+    // ฟังก์ชันเปิด/ปิดเพลง
+    function toggleMusic() {
+      const audioElement = document.getElementById("bgMusic");
+
+      if (musicPlaying) {
+        audioElement.pause(); // หยุดเพลง
+        musicPlaying = false;
+      } else {
+        audioElement.play(); // เล่นเพลง
+        musicPlaying = true;
+      }
+    }
+  </script>
+
 </body>
 </html>
